@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
 
-export const DiceRoller: React.FC = () => {
+interface DiceRollerProps {
+  onRoll?: (sides: number, result: number) => void;
+}
+
+export const DiceRoller: React.FC<DiceRollerProps> = ({ onRoll }) => {
   const [result, setResult] = useState<number | null>(null);
   const [isRolling, setIsRolling] = useState(false);
 
@@ -12,6 +16,10 @@ export const DiceRoller: React.FC = () => {
       const value = Math.floor(Math.random() * sides) + 1;
       setResult(value);
       setIsRolling(false);
+      
+      if (onRoll) {
+        onRoll(sides, value);
+      }
     }, 400);
   };
 

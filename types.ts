@@ -12,6 +12,7 @@ export interface User {
   id: string;
   name: string;
   role: UserRole;
+  password?: string; // Agora opcional para suportar usuários antigos, mas obrigatório no novo fluxo
   avatar?: string;
 }
 
@@ -49,6 +50,7 @@ export interface ChatMessage {
 
 export interface Session {
   id: string;
+  name: string;
   gmId: string;
   systemId: string;
   isActive: boolean;
