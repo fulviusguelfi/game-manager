@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      args:
+        - API_KEY=${API_KEY}
+    container_name: ordo_manager
+    ports:
+      - "8080:80"
+    environment:
+      - API_KEY=${API_KEY}
+    restart: unless-stopped
+    # No volumes needed for app data because we use LocalStorage (Browser).
+    # This ensures "stopping docker doesn't lose data" logic holds true.
